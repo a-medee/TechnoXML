@@ -12,10 +12,13 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DOMSearchTrack extends AbstractSearchTrack {
   private static Logger log = LogManager.getLogger();
+  List<Track> trackList = new ArrayList<Track>();
+  String title, preview;
 
   @Override
   public Output format() {
@@ -38,9 +41,11 @@ public class DOMSearchTrack extends AbstractSearchTrack {
     NodeList nodeList = doc.getElementsByTagName("track");
     for (int i = 0; i < nodeList.getLength(); i++) {
       Element elTrack = (Element) nodeList.item(i);
-      elTrack.getElementsByTagName("title").item(0).getTextContent();
+      title = elTrack.getElementsByTagName("title").item(0).getTextContent();
+      preview = elTrack.getElementsByTagName("preview").item(0).getTextContent();
+      trackList.add(new Track(title, preview.trim()));
     }
     log.debug("<<readTracks");
-    return null;
+    return trackList;
   }
 }

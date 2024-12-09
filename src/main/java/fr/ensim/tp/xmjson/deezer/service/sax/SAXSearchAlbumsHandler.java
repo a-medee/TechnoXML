@@ -2,6 +2,7 @@ package fr.ensim.tp.xmjson.deezer.service.sax;
 
 import fr.ensim.tp.xmjson.deezer.data.Album;
 import fr.ensim.tp.xmjson.deezer.data.Artist;
+import fr.ensim.tp.xmjson.deezer.data.Track;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
@@ -18,7 +19,7 @@ class SAXSearchAlbumsHandler extends DefaultHandler {
   private static final Logger log = LogManager.getLogger();
 
   private List<Album> listAlbum = new ArrayList<Album>();
-  boolean isId, isTitle, isArtist, isTrack, isCover;
+  boolean isId, isTitle, isArtist, isTrack, isCover, isArtistId, isName, isPicture, isLink;
 
   int currentPosition = 0;
     /**
@@ -64,18 +65,37 @@ class SAXSearchAlbumsHandler extends DefaultHandler {
 
     if (localName.equals("id"))
     {
-      isId = true;
+      isArtistId = true;
     }
-
     if (localName.equals("title"))
     {
       isTitle = true;
     }
-    if (localName.equals("cover"))
-    {
+    if (localName.equals("cover")) {
       isCover = true;
     }
-
+    if (localName.equals("artist"))
+    {
+      isArtist = true;
+      listAlbum.get(listAlbum.size() - 1).setArtist(new Artist());
+    }
+    if (localName.equals("id") && !isArtist)
+    {
+      isId = true;
+    }
+    if (localName.equals("name")) {
+      isName = true;
+    }
+    if (localName.equals("picture")) {
+      isPicture = true;
+    }
+    if  (localName.equals("link")) {
+      isLink = true;
+    }
+    if (localName.equals("name"))
+    {
+      isName = true;
+    }
 
   }
 
@@ -95,19 +115,41 @@ class SAXSearchAlbumsHandler extends DefaultHandler {
       log.debug(st);
     }
 
-    if (localName.equals("id"))
-    {
-      isId = false;
-    }
     if (localName.equals("title"))
     {
       isTitle = false;
     }
-    if (localName.equals("cover"))
+    if (localName.equals("artist"))
     {
+      isArtist = false;
+    }
+    if (localName.equals("id") && !isArtist)
+    {
+      isId = false;
+    }
+    if (localName.equals("id"))
+    {
+      isArtistId = false;
+    }
+    if (localName.equals("cover")) {
       isCover = false;
     }
-
+    if (localName.equals("link"))
+    {
+      isLink = false;
+      }
+    if (localName.equals("name"))
+    {
+      isName = false;
+    }
+    if (localName.equals("picture"))
+    {
+      isPicture = false;
+    }
+    if (localName.equals("tracklist"))
+    {
+      isTrack = false;
+    }
   }
 
   /*
@@ -125,15 +167,29 @@ class SAXSearchAlbumsHandler extends DefaultHandler {
     {
       listAlbum.get(listAlbum.size() - 1).setTitle(s);
     }
-
+    if (isCover)
+    {
+      listAlbum.get(listAlbum.size() - 1).setCover(s);
+    }
+    if (isArtist && isArtistId)
+    {
+      listAlbum.get(listAlbum.size() - 1).getArtist().setId(s);
+    }
     if (isId)
     {
       listAlbum.get(listAlbum.size() - 1).setId(s);
     }
-
-    if (isCover)
+    if (isLink && isArtist)
     {
-      listAlbum.get(listAlbum.size() - 1).setCover(s);
+      listAlbum.get(listAlbum.size() - 1).getArtist().setLink(s);
+    }
+    if (isName)
+    {
+      listAlbum.get(listAlbum.size() - 1).getArtist().setName(s);
+    }
+    if (isPicture)
+    {
+      listAlbum.get(listAlbum.size() - 1).getArtist().setPicture(s);
     }
   }
 
