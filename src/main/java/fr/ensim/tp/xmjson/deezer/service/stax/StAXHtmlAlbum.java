@@ -39,7 +39,9 @@ public class StAXHtmlAlbum implements IHtmlAlbum {
       XMLStreamWriter writer = xmlOutputFactory.createXMLStreamWriter(outputStream);
       writer.writeStartElement("html");
       writer.writeStartElement("body");
-      writer.writeAttribute("p", "This is the body of the html page");
+      writer.writeStartElement("p");
+      writer.writeCharacters("This is the body of the html page");
+      writer.writeEndElement();
       writer.writeEndElement();
       writer.writeEndElement();
 
