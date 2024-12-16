@@ -23,8 +23,8 @@ public class JSONSearchAlbums extends AbstractSearchAlbum {
 
 	@Override
 	public List<Album> readAlbums(InputStream in) throws IOException, JSONException {
-		//TODO
 
+		//TODO: to be continued
 		JSONObject root = new JSONObject(new JSONTokener(in));
 		System.out.println(root.getJSONArray("albums"));
 		return null;

@@ -9,6 +9,7 @@ import java.io.InputStream;
 public class JSONSearchAlbumsTest
 {
     public static void main(String[] args) {
-        JSONObject root = new JSONObject(new JSONTokener("/data/json/albums-.json"));
+        //TODO: to be continued
+        JSONObject root = new JSONObject(new JSONTokener("/data/json/albums-99051592.json"));
     }
 }
