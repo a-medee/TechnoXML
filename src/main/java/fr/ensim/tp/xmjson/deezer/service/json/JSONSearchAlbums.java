@@ -6,6 +6,8 @@ import fr.ensim.tp.xmjson.deezer.service.Output;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,9 @@ public class JSONSearchAlbums extends AbstractSearchAlbum {
 	@Override
 	public List<Album> readAlbums(InputStream in) throws IOException, JSONException {
 		//TODO
+
+		JSONObject root = new JSONObject(new JSONTokener(in));
+		System.out.println(root.getJSONArray("albums"));
 		return null;
 	}
 

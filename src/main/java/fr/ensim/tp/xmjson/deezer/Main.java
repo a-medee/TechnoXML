@@ -34,7 +34,7 @@ public class Main {
 
     log.debug(">>main");
     try {
-      List<Album> listAlbum = new SAXSearchAlbums().find("mannequin pussy");
+      List<Album> listAlbum = new SAXSearchAlbums().find("Oshin");
 
       // recuperation du 1er album
       Album album = listAlbum.get(2);

@@ -40,3 +40,7 @@
 2024-12-09 12:22:15,168 DEBUG fr.ensim.tp.xmjson.deezer.service.stax.StAXHtmlAlbum - <<write
 2024-12-09 12:22:25,113 DEBUG fr.ensim.tp.xmjson.deezer.service.stax.StAXHtmlAlbum - >>write
 2024-12-09 12:22:25,118 DEBUG fr.ensim.tp.xmjson.deezer.service.stax.StAXHtmlAlbum - <<write
+2024-12-15 09:59:28,393 DEBUG fr.ensim.tp.xmjson.deezer.service.dom.DOMSearchTrack - >>readTracks
+2024-12-15 09:59:28,407 DEBUG fr.ensim.tp.xmjson.deezer.service.dom.DOMSearchTrack - <<readTracks
+2024-12-16 13:02:45,268 DEBUG fr.ensim.tp.xmjson.deezer.service.stax.StAXHtmlAlbum - >>write
+2024-12-16 13:03:14,999 DEBUG fr.ensim.tp.xmjson.deezer.service.stax.StAXHtmlAlbum - >>write
